@@ -17,6 +17,9 @@ them here.
 
 ## Working Rules
 
+- On startup, read [.nvmrc](.nvmrc), confirm the active Node.js version matches it, and run
+  `nvm use` before any Node, npm, Angular CLI, json-server, or quality-gate command when the
+  active version differs.
 - Read the active Spec Kit plan under `specs/**/plan.md` before feature work. If no plan
   exists, use the constitution and design document as the source of truth.
 - Keep new Angular work standalone, signals-first, strict TypeScript, OnPush, lazy-loaded

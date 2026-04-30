@@ -1,14 +1,14 @@
 <!--
 Sync Impact Report
-Version change: 1.0.0 -> 1.1.0
-Modified principles: V. Accessibility, Quality Gates, and Tests Are Non-Negotiable ->
-V. Accessibility, Quality Gates, and Tests Are Non-Negotiable
-Added sections: Runtime Guidance Hierarchy
+Version change: 1.1.0 -> 1.2.0
+Modified principles: none
+Added sections: Agent Runtime Version Alignment
 Removed sections: none
 Templates requiring updates:
 - ✅ updated: .specify/templates/plan-template.md
 - ✅ updated: .specify/templates/spec-template.md
 - ✅ updated: .specify/templates/tasks-template.md
+- ✅ reviewed: .specify/templates/checklist-template.md
 - ✅ reviewed: .specify/templates/commands/*.md (no files present)
 - ✅ updated: .github/copilot-instructions.md
 - ✅ updated: AGENTS.md
@@ -111,6 +111,19 @@ constitution-related changes and MUST include migration notes.
 
 ## Development Workflow and Quality Gates
 
+### Agent Runtime Version Alignment
+
+When an agent starts work in this repository, it MUST read `.nvmrc` before running Node,
+npm, Angular CLI, json-server, or quality-gate commands. The active Node.js runtime MUST
+match the version declared in `.nvmrc`. If it does not match, the agent MUST switch to the
+declared version, such as with `nvm use`, before continuing. If the declared version is not
+installed or the version manager is unavailable, the agent MUST report the blocker and MUST
+NOT run project commands under a mismatched Node version.
+
+This rule applies before development servers, tests, builds, format checks, dependency
+installation, and generated Spec Kit workflows. It prevents environment drift and keeps
+Angular, npm, and local API behavior consistent across human and automated sessions.
+
 Feature specifications MUST describe approval work in user-centered terms and identify the
 workflow entities and statuses involved. Feature plans MUST explicitly document Angular
 architecture choices, lazy routing, state management, design token usage, accessibility
@@ -153,4 +166,4 @@ sections, or materially expanded guidance. PATCH changes clarify wording or fix 
 issues. Every plan, review, and delivery MUST verify compliance with this constitution and
 record justified exceptions before work proceeds.
 
-**Version**: 1.1.0 | **Ratified**: 2026-05-01 | **Last Amended**: 2026-05-01
+**Version**: 1.2.0 | **Ratified**: 2026-05-01 | **Last Amended**: 2026-05-01

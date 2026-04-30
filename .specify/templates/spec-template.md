@@ -114,6 +114,7 @@ _Example of marking unclear requirements:_
 
 ## Constitution Alignment _(mandatory)_
 
+- **Runtime alignment**: [Confirm agents must read `.nvmrc` and use the declared Node.js version before npm, Angular CLI, json-server, or quality-gate commands]
 - **Angular architecture impact**: [Standalone components, lazy routes, or shared services affected]
 - **State and data model impact**: [Signals, computed state, workflow statuses, and typed entities]
 - **Design system impact**: [DESIGN.md tokens, SCSS structure, Angular Material overrides, or Tailwind limits]

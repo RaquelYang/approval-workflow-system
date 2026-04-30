@@ -50,9 +50,10 @@ delivery.
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create or update Angular feature folders per implementation plan
-- [ ] T002 Define lazy route entries with `loadComponent` or route-level lazy loading
-- [ ] T003 [P] Identify DESIGN.md tokens and SCSS files used by the feature
+- [ ] T001 Read `.nvmrc`, confirm the active Node.js version matches it, and run `nvm use` if needed before project commands
+- [ ] T002 Create or update Angular feature folders per implementation plan
+- [ ] T003 Define lazy route entries with `loadComponent` or route-level lazy loading
+- [ ] T004 [P] Identify DESIGN.md tokens and SCSS files used by the feature
 
 ---
 
@@ -64,12 +65,12 @@ delivery.
 
 Examples of foundational tasks (adjust based on your project):
 
-- [ ] T004 Define approval workflow interfaces and explicit status type aliases
-- [ ] T005 [P] Create shared standalone components, directives, or pipes required by all stories
-- [ ] T006 [P] Add core services, guards, or adapters with `inject()` and typed error handling
-- [ ] T007 Establish signal/computed/effect state boundaries shared by user stories
-- [ ] T008 Configure Angular Material token overrides or SCSS token usage needed by the feature
-- [ ] T009 Add accessibility fixtures, labels, and focus behavior shared by the workflow
+- [ ] T005 Define approval workflow interfaces and explicit status type aliases
+- [ ] T006 [P] Create shared standalone components, directives, or pipes required by all stories
+- [ ] T007 [P] Add core services, guards, or adapters with `inject()` and typed error handling
+- [ ] T008 Establish signal/computed/effect state boundaries shared by user stories
+- [ ] T009 Configure Angular Material token overrides or SCSS token usage needed by the feature
+- [ ] T010 Add accessibility fixtures, labels, and focus behavior shared by the workflow
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -85,17 +86,17 @@ Examples of foundational tasks (adjust based on your project):
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
-- [ ] T010 [P] [US1] Component or service spec for [behavior] in src/app/features/[feature]/[name].spec.ts
-- [ ] T011 [P] [US1] Routing, form, or state transition spec for [journey] in src/app/features/[feature]/[name].spec.ts
+- [ ] T011 [P] [US1] Component or service spec for [behavior] in src/app/features/[feature]/[name].spec.ts
+- [ ] T012 [P] [US1] Routing, form, or state transition spec for [journey] in src/app/features/[feature]/[name].spec.ts
 
 ### Implementation for User Story 1
 
-- [ ] T012 [P] [US1] Create typed interfaces or status aliases in src/app/features/[feature]/[model].ts
-- [ ] T013 [P] [US1] Create standalone component with OnPush in src/app/features/[feature]/[component].component.ts
-- [ ] T014 [US1] Implement signal-based state and typed async error handling (depends on T012, T013)
-- [ ] T015 [US1] Implement template with `@if`, `@for`, or `@switch` in src/app/features/[feature]/[component].component.html
-- [ ] T016 [US1] Add SCSS using DESIGN.md tokens and shadow-as-border in src/app/features/[feature]/[component].component.scss
-- [ ] T017 [US1] Add keyboard, semantic HTML, `aria-*`, and focus behavior for the workflow
+- [ ] T013 [P] [US1] Create typed interfaces or status aliases in src/app/features/[feature]/[model].ts
+- [ ] T014 [P] [US1] Create standalone component with OnPush in src/app/features/[feature]/[component].component.ts
+- [ ] T015 [US1] Implement signal-based state and typed async error handling (depends on T013, T014)
+- [ ] T016 [US1] Implement template with `@if`, `@for`, or `@switch` in src/app/features/[feature]/[component].component.html
+- [ ] T017 [US1] Add SCSS using DESIGN.md tokens and shadow-as-border in src/app/features/[feature]/[component].component.scss
+- [ ] T018 [US1] Add keyboard, semantic HTML, `aria-*`, and focus behavior for the workflow
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -109,15 +110,15 @@ Examples of foundational tasks (adjust based on your project):
 
 ### Tests for User Story 2 (required when logic, state, forms, routing, or workflow rules change) ⚠️
 
-- [ ] T018 [P] [US2] Component or service spec for [behavior] in src/app/features/[feature]/[name].spec.ts
-- [ ] T019 [P] [US2] Routing, form, or state transition spec for [journey] in src/app/features/[feature]/[name].spec.ts
+- [ ] T019 [P] [US2] Component or service spec for [behavior] in src/app/features/[feature]/[name].spec.ts
+- [ ] T020 [P] [US2] Routing, form, or state transition spec for [journey] in src/app/features/[feature]/[name].spec.ts
 
 ### Implementation for User Story 2
 
-- [ ] T020 [P] [US2] Create typed interfaces or status aliases in src/app/features/[feature]/[model].ts
-- [ ] T021 [US2] Implement standalone component or service with `inject()` and signals
-- [ ] T022 [US2] Implement workflow UI with DESIGN.md tokens and accessible controls
-- [ ] T023 [US2] Integrate with User Story 1 components without breaking independent testability
+- [ ] T021 [P] [US2] Create typed interfaces or status aliases in src/app/features/[feature]/[model].ts
+- [ ] T022 [US2] Implement standalone component or service with `inject()` and signals
+- [ ] T023 [US2] Implement workflow UI with DESIGN.md tokens and accessible controls
+- [ ] T024 [US2] Integrate with User Story 1 components without breaking independent testability
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -131,14 +132,14 @@ Examples of foundational tasks (adjust based on your project):
 
 ### Tests for User Story 3 (required when logic, state, forms, routing, or workflow rules change) ⚠️
 
-- [ ] T024 [P] [US3] Component or service spec for [behavior] in src/app/features/[feature]/[name].spec.ts
-- [ ] T025 [P] [US3] Routing, form, or state transition spec for [journey] in src/app/features/[feature]/[name].spec.ts
+- [ ] T025 [P] [US3] Component or service spec for [behavior] in src/app/features/[feature]/[name].spec.ts
+- [ ] T026 [P] [US3] Routing, form, or state transition spec for [journey] in src/app/features/[feature]/[name].spec.ts
 
 ### Implementation for User Story 3
 
-- [ ] T026 [P] [US3] Create typed interfaces or status aliases in src/app/features/[feature]/[model].ts
-- [ ] T027 [US3] Implement standalone component or service with `inject()` and signals
-- [ ] T028 [US3] Implement workflow UI with DESIGN.md tokens and accessible controls
+- [ ] T027 [P] [US3] Create typed interfaces or status aliases in src/app/features/[feature]/[model].ts
+- [ ] T028 [US3] Implement standalone component or service with `inject()` and signals
+- [ ] T029 [US3] Implement workflow UI with DESIGN.md tokens and accessible controls
 
 **Checkpoint**: All user stories should now be independently functional
 

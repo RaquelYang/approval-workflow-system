@@ -20,7 +20,11 @@ active Spec Kit plan under `specs/**/plan.md` when one exists.
 
 ## Runtime And Commands
 
-- Use Node.js 22 from `.nvmrc` before running Angular CLI commands.
+- When an agent starts work in this repository, read `.nvmrc` first and confirm
+  the active Node.js version matches it. If it does not match, run `nvm use`
+  before any Node, npm, Angular CLI, json-server, or quality-gate command. If
+  the required version is unavailable, report the blocker instead of running
+  project commands under a mismatched Node version.
 - Install dependencies with `npm install`.
 - Run the fake API with `npm run api`; it serves `mock-api/db.js` on port `3000`.
 - Run the Angular dev server with `npm start`; it serves the app on port `4200`

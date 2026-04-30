@@ -12,6 +12,9 @@ nvm use
 npm install
 ```
 
+Agents must read `.nvmrc` when they start work and switch with `nvm use` before running
+Node, npm, Angular CLI, json-server, or quality-check commands if the active version differs.
+
 ## Development
 
 Run the fake API and Angular dev server in separate terminals:

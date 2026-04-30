@@ -24,7 +24,7 @@
 **Target Platform**: Modern web browsers for approval workflow users
 **Project Type**: Angular frontend application  
 **Performance Goals**: Efficient approval scanning, filtering, and repeated decision workflows without layout shift  
-**Constraints**: Standalone components, lazy routes, signals-first state, strict TypeScript, DESIGN.md tokens, accessible keyboard flows  
+**Constraints**: Agent runtime must match `.nvmrc`; standalone components, lazy routes, signals-first state, strict TypeScript, DESIGN.md tokens, accessible keyboard flows  
 **Scale/Scope**: Approval workflow screens, shared UI, feature modules, and route-level flows within `src/app/`
 
 ## Constitution Check
@@ -34,6 +34,9 @@ _GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
 - **Angular 21 architecture**: Plan names standalone components, lazy route or
   `loadComponent` boundaries, `inject()` dependencies, signal/computed/effect state, and
   zoneless-compatible OnPush behavior.
+- **Node runtime alignment**: Plan confirms the agent has read `.nvmrc`, switched to the
+  declared Node.js version when needed, and will run npm, Angular CLI, json-server, and
+  quality-gate commands only under that version.
 - **Strict TypeScript**: Plan identifies typed interfaces or type aliases, avoids `any`,
   defines error handling for async flows, and keeps code in `core`, `shared`, `features`, or
   `layout` boundaries.
