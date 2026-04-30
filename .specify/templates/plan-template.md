@@ -17,21 +17,35 @@
   the iteration process.
 -->
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [e.g., library/cli/web-service/mobile-app/compiler/desktop-app or NEEDS CLARIFICATION]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+**Language/Version**: TypeScript 5.x with Angular 21 strict templates  
+**Primary Dependencies**: Angular 21, Angular Router, Angular Material/CDK, RxJS, SCSS, Tailwind as auxiliary only  
+**Storage**: Browser/client state only unless feature specifies API integration or persistence  
+**Testing**: Vitest via `ng test`; lint and style checks via `npm run lint:all`  
+**Target Platform**: Modern web browsers for approval workflow users
+**Project Type**: Angular frontend application  
+**Performance Goals**: Efficient approval scanning, filtering, and repeated decision workflows without layout shift  
+**Constraints**: Standalone components, lazy routes, signals-first state, strict TypeScript, DESIGN.md tokens, accessible keyboard flows  
+**Scale/Scope**: Approval workflow screens, shared UI, feature modules, and route-level flows within `src/app/`
 
 ## Constitution Check
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+_GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
 
-[Gates determined based on constitution file]
+- **Angular 21 architecture**: Plan names standalone components, lazy route or
+  `loadComponent` boundaries, `inject()` dependencies, signal/computed/effect state, and
+  zoneless-compatible OnPush behavior.
+- **Strict TypeScript**: Plan identifies typed interfaces or type aliases, avoids `any`,
+  defines error handling for async flows, and keeps code in `core`, `shared`, `features`, or
+  `layout` boundaries.
+- **DESIGN.md compliance**: Plan lists the design tokens, CSS custom properties, SCSS files,
+  and shadow-as-border approach used by the feature. New hard-coded visual values require a
+  constitution-related token change rationale.
+- **Approval workflow UX**: Plan shows how the first screen or changed flow supports approval
+  work such as pending items, status, request details, actions, history, search, filtering,
+  and feedback states.
+- **Accessibility and quality gates**: Plan includes keyboard behavior, semantic HTML,
+  required `aria-*` attributes, focus state handling, tests for logic or routing when
+  applicable, and execution of `npm run lint:all` plus `npm run build`.
 
 ## Project Structure
 
@@ -48,6 +62,7 @@ specs/[###-feature]/
 ```
 
 ### Source Code (repository root)
+
 <!--
   ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
   for this feature. Delete unused options and expand the chosen structure with
@@ -56,39 +71,16 @@ specs/[###-feature]/
 -->
 
 ```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
 src/
-├── models/
-├── services/
-├── cli/
-└── lib/
-
-tests/
-├── contract/
-├── integration/
-└── unit/
-
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
-
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
-
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
-
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
+├── app/
+│   ├── core/           # Global services, guards, interceptors
+│   ├── shared/         # Shared standalone UI, directives, pipes
+│   ├── features/       # Lazy-loaded approval workflow features
+│   └── layout/         # Shell and layout components
+└── styles/
+    ├── abstracts/      # Tokens, variables, mixins
+    ├── base/           # Reset and typography
+    └── themes/         # Material and theme overrides
 ```
 
 **Structure Decision**: [Document the selected structure and reference the real
@@ -98,7 +90,7 @@ directories captured above]
 
 > **Fill ONLY if Constitution Check has violations that must be justified**
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+| Violation                  | Why Needed         | Simpler Alternative Rejected Because |
+| -------------------------- | ------------------ | ------------------------------------ |
+| [e.g., 4th project]        | [current need]     | [why 3 projects insufficient]        |
+| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient]  |
