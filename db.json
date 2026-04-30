@@ -1,0 +1,36 @@
+{
+    "approvalRequests": [
+        {
+            "id": 1,
+            "title": "採購筆電設備",
+            "requester": "Raquel Chen",
+            "department": "IT",
+            "amount": 128000,
+            "status": "pending",
+            "submittedAt": "2026-04-28T09:30:00.000Z"
+        },
+        {
+            "id": 2,
+            "title": "行銷活動預算",
+            "requester": "Mia Lin",
+            "department": "Marketing",
+            "amount": 86000,
+            "status": "approved",
+            "submittedAt": "2026-04-29T14:15:00.000Z"
+        },
+        {
+            "id": 3,
+            "title": "雲端服務續約",
+            "requester": "Evan Wu",
+            "department": "Engineering",
+            "amount": 240000,
+            "status": "reviewing",
+            "submittedAt": "2026-04-30T11:00:00.000Z"
+        }
+    ],
+    "apiStatus": {
+        "name": "approval-workflow-json-server",
+        "ready": true,
+        "version": "1.0.0"
+    }
+}
