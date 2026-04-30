@@ -1,9 +1,9 @@
 // ─── Angular Material M3 Theme (DESIGN.md 色系) ─────────────────────────────
 // 此檔案負責：Theme 定義、套用、元件覆寫
-// 必須第一個被 styles.scss @use，確保 mat.core() 最先執行
+// 必須第一個被 styles.scss @use，確保 mat.core 最先執行
 @use '@angular/material' as mat;
 
-@include mat.core();
+@include mat.core;
 
 // ─── M3 Theme Definition ─────────────────────────────────────────────────────
 // Primary  → Emerald 綠，對應 DESIGN.md link/develop #059669
@@ -61,9 +61,10 @@ html .mat-mdc-form-field {
 
 // ─── Header Hire Me Button ────────────────────────────────────────────────────
 // 元件 SCSS 的 [_ngcontent] 無法穿透 MDC 內部元素，改在全域樣式以高特異性覆寫
-html .header__hire-btn.mat-mdc-unelevated-button {
+html .header-hire-btn.mat-mdc-unelevated-button {
     background-color: var(--color-text-primary);
 
+    // stylelint-disable-next-line selector-class-pattern -- MDC uses BEM-style internal class names.
     .mdc-button__label {
         color: var(--color-bg);
     }
@@ -79,12 +80,14 @@ html .mat-mdc-chip {
     --mat-chip-selected-hover-state-layer-color: transparent;
     --mat-chip-focus-state-layer-color: transparent;
     --mat-chip-hover-state-layer-opacity: 0;
+
     border-radius: var(--radius-pill);
     background-color: var(--color-badge-bg);
     color: var(--color-badge-text);
     font-size: 12px;
     font-weight: 500;
 
+    // stylelint-disable-next-line selector-class-pattern -- MDC uses BEM-style internal class names.
     .mdc-evolution-chip__ripple {
         border-width: 0;
         border-color: transparent;
