@@ -1,4 +1,4 @@
-import { EnvironmentProviders, InjectionToken, makeEnvironmentProviders } from '@angular/core';
+import { InjectionToken, makeEnvironmentProviders, type EnvironmentProviders } from '@angular/core';
 
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL', {
     providedIn: 'root',

@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { toSignal } from '@angular/core/rxjs-interop';
 import { catchError, map, of } from 'rxjs';
 
-import { ApprovalApiService, ApprovalRequest } from './core/services/approval-api.service';
+import { ApprovalApiService, type ApprovalRequest } from './core/services/approval-api.service';
 
 type ApprovalApiStatus = 'loading' | 'success' | 'error';
 
@@ -28,7 +28,7 @@ const INITIAL_API_STATE: ApprovalApiViewModel = {
     styleUrl: './app.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class App {
+export class AppComponent {
     private readonly approvalApiService = inject(ApprovalApiService);
 
     protected readonly approvalRequestsEndpoint = this.approvalApiService.approvalRequestsEndpoint;

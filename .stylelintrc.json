@@ -1,6 +1,24 @@
 {
     "extends": ["stylelint-config-standard-scss", "stylelint-config-prettier-scss"],
     "rules": {
+        "color-named": "never",
+        "custom-property-pattern": "^([a-z][a-z0-9]*)(-[a-z0-9]+)*$",
+        "declaration-no-important": true,
+        "font-weight-notation": "numeric",
+        "max-nesting-depth": [
+            3,
+            {
+                "ignore": ["blockless-at-rules", "pseudo-classes"]
+            }
+        ],
+        "selector-class-pattern": [
+            "^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$",
+            {
+                "message": "Expected class selectors to use kebab-case.",
+                "resolveNestedSelectors": true
+            }
+        ],
+        "selector-max-id": 0,
         "scss/at-rule-no-unknown": [
             true,
             {
@@ -14,6 +32,8 @@
                     "custom-variant"
                 ]
             }
-        ]
+        ],
+        "scss/at-extend-no-missing-placeholder": true,
+        "scss/selector-no-redundant-nesting-selector": true
     }
 }

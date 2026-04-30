@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, Observable, throwError, timeout } from 'rxjs';
+import { catchError, throwError, timeout, type Observable } from 'rxjs';
 
 import { API_BASE_URL } from '../tokens/api-base-url.token';
 

@@ -11,46 +11,46 @@
         </div>
 
         @if (state.status === 'loading') {
-        <p class="status-message" aria-live="polite">載入 API 資料中...</p>
+            <p class="status-message" aria-live="polite">載入 API 資料中...</p>
         } @else if (state.status === 'error') {
-        <p class="status-message status-message-error" aria-live="assertive">
-            {{ state.errorMessage }}
-        </p>
+            <p class="status-message status-message-error" aria-live="assertive">
+                {{ state.errorMessage }}
+            </p>
         } @else {
-        <div class="metrics" aria-label="API response summary">
-            <div>
-                <span>筆數</span>
-                <strong>{{ state.requests.length }}</strong>
-            </div>
-            <div>
-                <span>總金額</span>
-                <strong>{{
-                    totalAmount() | currency: 'TWD' : 'symbol-narrow' : '1.0-0'
-                    }}</strong>
-            </div>
-        </div>
-
-        <div class="request-list" aria-label="Approval requests">
-            @for (request of state.requests; track request.id) {
-            <article class="request-card">
+            <div class="metrics" aria-label="API response summary">
                 <div>
-                    <p class="request-card-meta">
-                        #{{ request.id }} · {{ request.department }}
-                    </p>
-                    <h2>{{ request.title }}</h2>
-                    <p>{{ request.requester }}</p>
+                    <span>筆數</span>
+                    <strong>{{ state.requests.length }}</strong>
                 </div>
-                <div class="request-card-aside">
-                    <span class="status-badge">{{ request.status }}</span>
+                <div>
+                    <span>總金額</span>
                     <strong>{{
-                        request.amount | currency: 'TWD' : 'symbol-narrow' : '1.0-0'
-                        }}</strong>
+                        totalAmount() | currency: 'TWD' : 'symbol-narrow' : '1.0-0'
+                    }}</strong>
                 </div>
-            </article>
-            } @empty {
-            <p class="status-message" aria-live="polite">目前沒有待處理的簽核申請。</p>
-            }
-        </div>
+            </div>
+
+            <div class="request-list" aria-label="Approval requests">
+                @for (request of state.requests; track request.id) {
+                    <article class="request-card">
+                        <div>
+                            <p class="request-card-meta">
+                                #{{ request.id }} · {{ request.department }}
+                            </p>
+                            <h2>{{ request.title }}</h2>
+                            <p>{{ request.requester }}</p>
+                        </div>
+                        <div class="request-card-aside">
+                            <span class="status-badge">{{ request.status }}</span>
+                            <strong>{{
+                                request.amount | currency: 'TWD' : 'symbol-narrow' : '1.0-0'
+                            }}</strong>
+                        </div>
+                    </article>
+                } @empty {
+                    <p class="status-message" aria-live="polite">目前沒有待處理的簽核申請。</p>
+                }
+            </div>
         }
     </section>
 </main>

@@ -9,12 +9,46 @@ module.exports = defineConfig([
         files: ['**/*.ts'],
         extends: [
             eslint.configs.recommended,
-            tseslint.configs.recommended,
-            tseslint.configs.stylistic,
+            tseslint.configs.strictTypeChecked,
+            tseslint.configs.stylisticTypeChecked,
             angular.configs.tsRecommended,
         ],
+        languageOptions: {
+            parserOptions: {
+                projectService: true,
+                tsconfigRootDir: __dirname,
+            },
+        },
+        linterOptions: {
+            reportUnusedDisableDirectives: 'error',
+        },
         processor: angular.processInlineTemplates,
         rules: {
+            '@typescript-eslint/consistent-type-imports': [
+                'error',
+                {
+                    fixStyle: 'inline-type-imports',
+                    prefer: 'type-imports',
+                },
+            ],
+            '@typescript-eslint/no-floating-promises': 'error',
+            '@typescript-eslint/no-misused-promises': [
+                'error',
+                {
+                    checksVoidReturn: {
+                        attributes: false,
+                    },
+                },
+            ],
+            '@typescript-eslint/no-unused-vars': [
+                'error',
+                {
+                    argsIgnorePattern: '^_',
+                    caughtErrorsIgnorePattern: '^_',
+                    varsIgnorePattern: '^_',
+                },
+            ],
+            '@angular-eslint/component-class-suffix': 'error',
             '@angular-eslint/directive-selector': [
                 'error',
                 {
@@ -31,11 +65,20 @@ module.exports = defineConfig([
                     style: 'kebab-case',
                 },
             ],
+            '@angular-eslint/directive-class-suffix': 'error',
+            '@angular-eslint/no-input-rename': 'error',
+            '@angular-eslint/no-output-native': 'error',
+            '@angular-eslint/no-output-rename': 'error',
+            '@angular-eslint/prefer-on-push-component-change-detection': 'error',
+            '@angular-eslint/prefer-standalone': 'error',
         },
     },
     {
         files: ['**/*.html'],
         extends: [angular.configs.templateRecommended, angular.configs.templateAccessibility],
-        rules: {},
+        rules: {
+            '@angular-eslint/template/eqeqeq': 'error',
+            '@angular-eslint/template/no-negated-async': 'error',
+        },
     },
 ]);

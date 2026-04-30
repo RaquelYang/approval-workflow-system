@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { Observable, of } from 'rxjs';
+import { of, type Observable } from 'rxjs';
 
-import { App } from './app';
-import { ApprovalApiService, ApprovalRequest } from './core/services/approval-api.service';
+import { AppComponent } from './app';
+import { ApprovalApiService, type ApprovalRequest } from './core/services/approval-api.service';
 
 const APPROVAL_REQUESTS: readonly ApprovalRequest[] = [
     {
@@ -36,19 +36,19 @@ const approvalApiServiceStub: Pick<
 describe('App', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [App],
+            imports: [AppComponent],
             providers: [{ provide: ApprovalApiService, useValue: approvalApiServiceStub }],
         }).compileComponents();
     });
 
     it('should create the app', () => {
-        const fixture = TestBed.createComponent(App);
+        const fixture = TestBed.createComponent(AppComponent);
         const app = fixture.componentInstance;
         expect(app).toBeTruthy();
     });
 
     it('should render API title', async () => {
-        const fixture = TestBed.createComponent(App);
+        const fixture = TestBed.createComponent(AppComponent);
         fixture.detectChanges();
         await fixture.whenStable();
         const compiled = fixture.nativeElement as HTMLElement;
@@ -56,12 +56,12 @@ describe('App', () => {
     });
 
     it('should render approval request metrics', async () => {
-        const fixture = TestBed.createComponent(App);
+        const fixture = TestBed.createComponent(AppComponent);
         fixture.detectChanges();
         await fixture.whenStable();
         const compiled = fixture.nativeElement as HTMLElement;
 
-        expect(compiled.querySelector('.metrics strong')?.textContent?.trim()).toBe('2');
+        expect(compiled.querySelector('.metrics strong')?.textContent.trim()).toBe('2');
         expect(compiled.textContent).toContain('採購筆電設備');
         expect(compiled.textContent).toContain('$214,000');
     });
