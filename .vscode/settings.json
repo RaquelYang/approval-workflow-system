@@ -1,0 +1,9 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "eslint.validate": ["typescript", "html"],
+    "stylelint.validate": ["css", "scss"]
+}

@@ -1,0 +1,111 @@
+// ─── Angular Material M3 Theme (DESIGN.md 色系) ─────────────────────────────
+// 此檔案負責：Theme 定義、套用、元件覆寫
+// 必須第一個被 styles.scss @use，確保 mat.core() 最先執行
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+// ─── M3 Theme Definition ─────────────────────────────────────────────────────
+// Primary  → Emerald 綠，對應 DESIGN.md link/develop #059669
+// Tertiary → Rose 玫瑰，對應 DESIGN.md preview #de1d8d
+$geist-theme: mat.define-theme(
+    (
+        color: (
+            theme-type: light,
+            primary: mat.$green-palette,
+            tertiary: mat.$rose-palette,
+        ),
+        typography: (
+            brand-family: 'Geist, Arial, Apple Color Emoji, Segoe UI Emoji, sans-serif',
+            plain-family: 'Geist, Arial, Apple Color Emoji, Segoe UI Emoji, sans-serif',
+            bold-weight: 600,
+            medium-weight: 500,
+            regular-weight: 400,
+        ),
+        density: (
+            scale: 0,
+        ),
+    )
+);
+
+// ─── 套用 Theme ───────────────────────────────────────────────────────────────
+html {
+    @include mat.all-component-themes($geist-theme);
+}
+
+// ─── Material 元件覆寫：遵循 DESIGN.md shadow-as-border 哲學 ─────────────────
+// 使用 html 前綴確保特異性 (0,0,1,1) > Material 產生的 (0,0,1,0)
+
+html .mat-mdc-card {
+    box-shadow: var(--shadow-card);
+    border-radius: var(--radius-card);
+}
+
+html .mat-mdc-button,
+html .mat-mdc-raised-button,
+html .mat-mdc-outlined-button {
+    border-radius: var(--radius-button);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 14px;
+
+    &:focus-visible {
+        outline: 2px solid var(--color-focus);
+        outline-offset: 2px;
+    }
+}
+
+html .mat-mdc-form-field {
+    font-family: var(--font-sans);
+}
+
+// ─── Header Hire Me Button ────────────────────────────────────────────────────
+// 元件 SCSS 的 [_ngcontent] 無法穿透 MDC 內部元素，改在全域樣式以高特異性覆寫
+html .header__hire-btn.mat-mdc-unelevated-button {
+    background-color: var(--color-text-primary);
+
+    .mdc-button__label {
+        color: var(--color-bg);
+    }
+}
+
+html .mat-mdc-chip {
+    --mdc-chip-outline-color: transparent;
+    --mdc-chip-flat-outline-color: transparent;
+    --mdc-chip-outline-width: 0;
+    --mdc-chip-flat-outline-width: 0;
+    --mdc-chip-elevated-container-color: var(--color-badge-bg);
+    --mat-chip-hover-state-layer-color: transparent;
+    --mat-chip-selected-hover-state-layer-color: transparent;
+    --mat-chip-focus-state-layer-color: transparent;
+    --mat-chip-hover-state-layer-opacity: 0;
+    border-radius: var(--radius-pill);
+    background-color: var(--color-badge-bg);
+    color: var(--color-badge-text);
+    font-size: 12px;
+    font-weight: 500;
+
+    .mdc-evolution-chip__ripple {
+        border-width: 0;
+        border-color: transparent;
+        background-color: var(--color-badge-bg);
+        border-radius: inherit;
+    }
+
+    // 移除 hover/focus state layer overlay
+    .mat-mdc-chip-focus-overlay {
+        background: transparent;
+        opacity: 0;
+    }
+
+    &::after,
+    &::before {
+        border: none;
+        outline: none;
+    }
+
+    &.mdc-evolution-chip {
+        border: none;
+        outline: none;
+    }
+}

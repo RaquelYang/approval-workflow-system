@@ -1,0 +1,58 @@
+// ─── CSS Reset ────────────────────────────────────────────────────────────────
+// 依賴：abstracts/_variables.scss 已先載入（使用 --color-* / --font-* 自訂屬性）
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-feature-settings: 'liga'; // Geist 連字全域啟用
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-sans);
+    color: var(--color-text-primary);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+ul,
+ol {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+a {
+    color: var(--color-link);
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+button {
+    font-family: var(--font-sans);
+    cursor: pointer;
+    background: none;
+    border-width: 0;
+}
