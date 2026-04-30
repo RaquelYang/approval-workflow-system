@@ -22,7 +22,7 @@ active Spec Kit plan under `specs/**/plan.md` when one exists.
 
 - Use Node.js 22 from `.nvmrc` before running Angular CLI commands.
 - Install dependencies with `npm install`.
-- Run the fake API with `npm run api`; it serves `db.json` on port `3000`.
+- Run the fake API with `npm run api`; it serves `mock-api/db.js` on port `3000`.
 - Run the Angular dev server with `npm start`; it serves the app on port `4200`
   and runs `npm run lint:all` first.
 - Use these quality gates before delivery when the change affects application
@@ -142,7 +142,8 @@ handoff.
 - Development configuration lives in `src/environments/environment.development.ts`.
 - Production defaults live in `src/environments/environment.ts`.
 - Provider wiring lives in `src/app/app.config.ts`.
-- Fake API data lives in `db.json`.
+- Fake API data lives under `mock-api/data`, with `mock-api/db.js` composing
+  resources for `json-server`.
 
 ## Collaboration Expectations
 

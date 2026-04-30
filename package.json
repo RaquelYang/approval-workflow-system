@@ -7,15 +7,15 @@
         "start": "ng serve",
         "prebuild": "npm run lint:all",
         "build": "ng build",
-        "api": "json-server --watch db.json --port 3000",
+        "api": "json-server --watch mock-api/db.js --port 3000",
         "watch": "ng build --watch --configuration development",
         "test": "ng test",
         "test:ci": "ng test --watch=false",
         "lint": "ng lint",
         "lint:styles": "stylelint \"src/**/*.{css,scss}\"",
         "lint:all": "npm run lint && npm run lint:styles",
-        "format": "prettier --write \"*.json\" \"*.js\" \".prettierrc\" \".postcssrc.json\" \".stylelintrc.json\" \".vscode/**/*.json\" \"README.md\" \"src/**/*.{ts,html,scss,css}\" \"tsconfig*.json\"",
-        "format:check": "prettier --check \"*.json\" \"*.js\" \".prettierrc\" \".postcssrc.json\" \".stylelintrc.json\" \".vscode/**/*.json\" \"README.md\" \"src/**/*.{ts,html,scss,css}\" \"tsconfig*.json\""
+        "format": "prettier --write \"*.json\" \"*.js\" \"mock-api/**/*.{json,js}\" \".prettierrc\" \".postcssrc.json\" \".stylelintrc.json\" \".vscode/**/*.json\" \"README.md\" \"src/**/*.{ts,html,scss,css}\" \"tsconfig*.json\"",
+        "format:check": "prettier --check \"*.json\" \"*.js\" \"mock-api/**/*.{json,js}\" \".prettierrc\" \".postcssrc.json\" \".stylelintrc.json\" \".vscode/**/*.json\" \"README.md\" \"src/**/*.{ts,html,scss,css}\" \"tsconfig*.json\""
     },
     "private": true,
     "packageManager": "npm@10.9.4",

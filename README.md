@@ -48,6 +48,7 @@ npm run format:check
 ## Project Notes
 
 - Angular is configured for standalone components, Signals, strict templates, and SCSS.
-- Fake API data lives in [db.json](./db.json).
+- Fake API data lives under [mock-api/data](mock-api/data), with
+  [mock-api/db.js](mock-api/db.js) composing resources for `json-server`.
 - Design tokens live in [src/styles/abstracts/\_variables.scss](./src/styles/abstracts/_variables.scss) and should stay aligned with [DESIGN.md](./DESIGN.md).
 - Project governance lives in [.specify/memory/constitution.md](.specify/memory/constitution.md). Keep README focused on setup and commands.
