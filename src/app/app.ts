@@ -5,11 +5,21 @@ import { catchError, map, of } from 'rxjs';
 
 import { ApprovalApiService, ApprovalRequest } from './core/services/approval-api.service';
 
+type ApprovalApiStatus = 'loading' | 'success' | 'error';
+
 interface ApprovalApiViewModel {
-    readonly status: 'loading' | 'success' | 'error';
+    readonly status: ApprovalApiStatus;
     readonly requests: readonly ApprovalRequest[];
     readonly errorMessage: string | null;
 }
+
+const EMPTY_APPROVAL_REQUESTS: readonly ApprovalRequest[] = [];
+
+const INITIAL_API_STATE: ApprovalApiViewModel = {
+    status: 'loading',
+    requests: EMPTY_APPROVAL_REQUESTS,
+    errorMessage: null,
+};
 
 @Component({
     selector: 'app-root',
@@ -33,17 +43,13 @@ export class App {
             catchError((error: unknown) =>
                 of({
                     status: 'error',
-                    requests: [],
+                    requests: EMPTY_APPROVAL_REQUESTS,
                     errorMessage: error instanceof Error ? error.message : '發生未知 API 錯誤。',
                 } satisfies ApprovalApiViewModel),
             ),
         ),
         {
-            initialValue: {
-                status: 'loading',
-                requests: [],
-                errorMessage: null,
-            } satisfies ApprovalApiViewModel,
+            initialValue: INITIAL_API_STATE,
         },
     );
 

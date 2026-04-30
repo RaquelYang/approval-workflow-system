@@ -4,14 +4,8 @@
     "editor.formatOnSave": true,
     "editor.insertSpaces": true,
     "editor.tabSize": 4,
-    "eslint.validate": [
-        "typescript",
-        "html"
-    ],
-    "stylelint.validate": [
-        "css",
-        "scss"
-    ],
+    "eslint.validate": ["typescript", "html"],
+    "stylelint.validate": ["css", "scss"],
     "chat.promptFilesRecommendations": {
         "speckit.constitution": true,
         "speckit.specify": true,
