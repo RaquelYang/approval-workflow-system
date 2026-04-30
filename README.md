@@ -42,6 +42,7 @@ Use `provideApiBaseUrl()` in tests or future runtime setup to override the endpo
 npm run lint:all
 npm run test:ci
 npm run build
+npm run format:check
 ```
 
 ## Project Notes
@@ -49,3 +50,4 @@ npm run build
 - Angular is configured for standalone components, Signals, strict templates, and SCSS.
 - Fake API data lives in [db.json](./db.json).
 - Design tokens live in [src/styles/abstracts/\_variables.scss](./src/styles/abstracts/_variables.scss) and should stay aligned with [DESIGN.md](./DESIGN.md).
+- Project governance lives in [.specify/memory/constitution.md](.specify/memory/constitution.md). Keep README focused on setup and commands.

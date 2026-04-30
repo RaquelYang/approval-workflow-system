@@ -1,15 +1,19 @@
 <!--
 Sync Impact Report
-Version change: template -> 1.0.0
-Modified principles: none; initial ratified constitution
-Added sections: Technical Constraints; Development Workflow and Quality Gates
+Version change: 1.0.0 -> 1.1.0
+Modified principles: V. Accessibility, Quality Gates, and Tests Are Non-Negotiable ->
+V. Accessibility, Quality Gates, and Tests Are Non-Negotiable
+Added sections: Runtime Guidance Hierarchy
 Removed sections: none
 Templates requiring updates:
 - ✅ updated: .specify/templates/plan-template.md
 - ✅ updated: .specify/templates/spec-template.md
 - ✅ updated: .specify/templates/tasks-template.md
 - ✅ reviewed: .specify/templates/commands/*.md (no files present)
-- ✅ reviewed: README.md, AGENTS.md, DESIGN.md
+- ✅ updated: .github/copilot-instructions.md
+- ✅ updated: AGENTS.md
+- ✅ updated: README.md
+- ✅ reviewed: DESIGN.md
 Follow-up TODOs: none
 -->
 
@@ -81,12 +85,13 @@ New UI MUST avoid text overflow, incoherent overlap, layout shift, and unusable 
 states. Forms, dialogs, tables, buttons, status labels, icons, and navigation controls MUST
 follow `DESIGN.md` tokens for color, radius, weight, and shadow.
 
-Each feature MUST pass `npm run lint:all` and `npm run build` before delivery. Features that
-include logic, state transitions, form validation, routing behavior, or approval workflow
-rules MUST include tests with `ng test` or the project's configured test runner. If any gate
-cannot be executed, the plan or delivery notes MUST record the reason and the risk. This
-principle keeps the system usable for assistive technologies and resilient under ongoing
-feature work.
+Each application behavior or styling change MUST run `npm run lint:all`, `npm run test:ci`,
+`npm run build`, and `npm run format:check` before delivery. Features that include logic,
+state transitions, form validation, routing behavior, API interaction, or approval workflow
+rules MUST include focused tests through `ng test` or the project's configured test runner.
+If any gate cannot be executed, the plan or delivery notes MUST record the reason and the
+risk. This principle keeps the system usable for assistive technologies and resilient under
+ongoing feature work.
 
 ## Technical Constraints
 
@@ -114,10 +119,26 @@ constitution MUST be called out in the plan with a proposed correction before im
 continues.
 
 Task lists MUST include work for TypeScript models, Angular standalone components or
-services, SCSS token usage, accessibility checks, and validation through `npm run lint:all`
-and `npm run build`. Tests MUST be scheduled for logic, state transitions, form validation,
-routing behavior, and approval workflow rules. Pull requests or handoffs MUST include the
-quality gates executed, or document the reason they were not executed and the residual risk.
+services, SCSS token usage, accessibility checks, and validation through the required quality
+gates. Tests MUST be scheduled for logic, state transitions, form validation, routing
+behavior, API interaction, and approval workflow rules. Pull requests or handoffs MUST
+include the quality gates executed, or document the reason they were not executed and the
+residual risk.
+
+## Runtime Guidance Hierarchy
+
+This constitution is the authoritative governance source for architecture, design, approval
+workflow UX, accessibility, and quality gates. `DESIGN.md` is the authoritative visual token
+and interaction reference. `.github/copilot-instructions.md` is an operational summary for
+Copilot and MUST point back to this constitution instead of duplicating full principle text.
+`AGENTS.md` is a human-readable agent index and MUST stay concise. `README.md` is an
+onboarding and command reference for developers and MUST NOT repeat architectural rules
+beyond short pointers to this constitution and `DESIGN.md`.
+
+When guidance conflicts, the constitution wins first, then `DESIGN.md` for visual details,
+then Copilot instructions for agent execution behavior, then `AGENTS.md` and `README.md` for
+orientation. Any change that expands, removes, or redefines project rules MUST update this
+hierarchy's dependent files in the same amendment.
 
 ## Governance
 
@@ -132,4 +153,4 @@ sections, or materially expanded guidance. PATCH changes clarify wording or fix 
 issues. Every plan, review, and delivery MUST verify compliance with this constitution and
 record justified exceptions before work proceeds.
 
-**Version**: 1.0.0 | **Ratified**: 2026-05-01 | **Last Amended**: 2026-05-01
+**Version**: 1.1.0 | **Ratified**: 2026-05-01 | **Last Amended**: 2026-05-01

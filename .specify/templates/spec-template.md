@@ -118,7 +118,7 @@ _Example of marking unclear requirements:_
 - **State and data model impact**: [Signals, computed state, workflow statuses, and typed entities]
 - **Design system impact**: [DESIGN.md tokens, SCSS structure, Angular Material overrides, or Tailwind limits]
 - **Accessibility impact**: [Keyboard, semantic HTML, aria attributes, focus, responsive behavior]
-- **Testing and quality gates**: [Required tests plus lint/build gates]
+- **Testing and quality gates**: [Required tests plus lint/test/build/format gates]
 
 ## Success Criteria _(mandatory)_
 

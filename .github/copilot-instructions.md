@@ -13,10 +13,10 @@ This repository is an Angular 21 frontend application for an approval workflow
 system. It uses a local `json-server` API during development and follows the
 Vercel / Geist design system documented in `DESIGN.md`.
 
-Before planning or implementing feature work, check the active Spec Kit plan
-when one exists under `specs/**/plan.md`. If no feature plan exists, use
-`.specify/memory/constitution.md`, `AGENTS.md`, `README.md`, and `DESIGN.md` as
-the authoritative project guidance.
+Use `.specify/memory/constitution.md` as the authoritative source for project
+rules. Use `DESIGN.md` for visual tokens, `AGENTS.md` for agent orientation, and
+`README.md` for setup and command reference. Before feature work, check the
+active Spec Kit plan under `specs/**/plan.md` when one exists.
 
 ## Runtime And Commands
 
@@ -35,7 +35,7 @@ the authoritative project guidance.
 If a command cannot be run, report the reason and the residual risk in the final
 handoff.
 
-## Angular 21 Rules
+## Angular 21 Implementation Summary
 
 - Build all new Angular pieces as standalone components, directives, pipes, or
   services. Do not add NgModules.
@@ -74,7 +74,7 @@ handoff.
 - Keep edits focused. Do not refactor unrelated files while implementing a
   feature or fix.
 
-## Styling And Design System
+## Styling And Design Summary
 
 - Treat `DESIGN.md` as the single source of truth for colors, typography,
   spacing, radius, shadows, and interaction states.
@@ -147,6 +147,8 @@ handoff.
 ## Collaboration Expectations
 
 - Follow `.specify/memory/constitution.md` when Spec Kit guidance applies.
+- Keep this file as an operational summary. Put durable governance changes in
+  `.specify/memory/constitution.md` and detailed visual rules in `DESIGN.md`.
 - Preserve user changes in the working tree. Do not revert unrelated edits.
 - Use existing project patterns before introducing new abstractions.
 - Keep documentation updated when commands, architecture, API contracts, or design

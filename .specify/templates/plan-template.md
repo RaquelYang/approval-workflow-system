@@ -20,7 +20,7 @@
 **Language/Version**: TypeScript 5.x with Angular 21 strict templates  
 **Primary Dependencies**: Angular 21, Angular Router, Angular Material/CDK, RxJS, SCSS, Tailwind as auxiliary only  
 **Storage**: Browser/client state only unless feature specifies API integration or persistence  
-**Testing**: Vitest via `ng test`; lint and style checks via `npm run lint:all`  
+**Testing**: `npm run test:ci`; lint, build, and format checks via `npm run lint:all`, `npm run build`, and `npm run format:check`  
 **Target Platform**: Modern web browsers for approval workflow users
 **Project Type**: Angular frontend application  
 **Performance Goals**: Efficient approval scanning, filtering, and repeated decision workflows without layout shift  
@@ -44,8 +44,9 @@ _GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
   work such as pending items, status, request details, actions, history, search, filtering,
   and feedback states.
 - **Accessibility and quality gates**: Plan includes keyboard behavior, semantic HTML,
-  required `aria-*` attributes, focus state handling, tests for logic or routing when
-  applicable, and execution of `npm run lint:all` plus `npm run build`.
+  required `aria-*` attributes, focus state handling, tests for logic, routing, API, or
+  workflow rules when applicable, and execution of `npm run lint:all`, `npm run test:ci`,
+  `npm run build`, and `npm run format:check`.
 
 ## Project Structure
 

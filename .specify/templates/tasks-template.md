@@ -8,8 +8,9 @@ description: 'Task list template for feature implementation'
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
 
 **Tests**: Include tests when the feature affects logic, state transitions, form validation,
-routing behavior, or approval workflow rules. The constitution requires `npm run lint:all`
-and `npm run build` before delivery.
+routing behavior, API interaction, or approval workflow rules. The constitution requires
+`npm run lint:all`, `npm run test:ci`, `npm run build`, and `npm run format:check` before
+delivery.
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
 
@@ -157,7 +158,9 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] TXXX [P] Additional Angular specs for workflow edge cases
 - [ ] TXXX Accessibility verification for keyboard, aria, focus, and mobile behavior
 - [ ] TXXX Run `npm run lint:all`
+- [ ] TXXX Run `npm run test:ci`
 - [ ] TXXX Run `npm run build`
+- [ ] TXXX Run `npm run format:check`
 - [ ] TXXX Run quickstart.md validation
 
 ---
