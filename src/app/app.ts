@@ -31,6 +31,8 @@ const INITIAL_API_STATE: ApprovalApiViewModel = {
 export class App {
     private readonly approvalApiService = inject(ApprovalApiService);
 
+    protected readonly approvalRequestsEndpoint = this.approvalApiService.approvalRequestsEndpoint;
+
     protected readonly apiState = toSignal(
         this.approvalApiService.getApprovalRequests().pipe(
             map(

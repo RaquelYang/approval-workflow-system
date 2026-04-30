@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, Observable, throwError, timeout } from 'rxjs';
 
-const API_BASE_URL = 'http://localhost:3000';
+import { API_BASE_URL } from '../tokens/api-base-url.token';
 
 export type ApprovalStatus = 'pending' | 'approved' | 'reviewing' | 'rejected';
 
@@ -22,6 +22,9 @@ export interface ApprovalRequest {
 @Injectable({ providedIn: 'root' })
 export class ApprovalApiService {
     private readonly httpClient = inject(HttpClient);
+    private readonly apiBaseUrl = inject(API_BASE_URL);
+
+    public readonly approvalRequestsEndpoint = `${this.apiBaseUrl}/approvalRequests`;
 
     /**
      * Gets approval requests from the local json-server API.
@@ -29,14 +32,12 @@ export class ApprovalApiService {
      * @returns Approval request stream from the fake API.
      */
     public getApprovalRequests(): Observable<readonly ApprovalRequest[]> {
-        return this.httpClient
-            .get<readonly ApprovalRequest[]>(`${API_BASE_URL}/approvalRequests`)
-            .pipe(
-                timeout(5000),
-                catchError((error: unknown) =>
-                    throwError(() => new Error(this.resolveErrorMessage(error))),
-                ),
-            );
+        return this.httpClient.get<readonly ApprovalRequest[]>(this.approvalRequestsEndpoint).pipe(
+            timeout(5000),
+            catchError((error: unknown) =>
+                throwError(() => new Error(this.resolveErrorMessage(error))),
+            ),
+        );
     }
 
     private resolveErrorMessage(error: unknown): string {

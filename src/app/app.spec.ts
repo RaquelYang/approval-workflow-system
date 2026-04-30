@@ -25,7 +25,11 @@ const APPROVAL_REQUESTS: readonly ApprovalRequest[] = [
     },
 ];
 
-const approvalApiServiceStub: Pick<ApprovalApiService, 'getApprovalRequests'> = {
+const approvalApiServiceStub: Pick<
+    ApprovalApiService,
+    'approvalRequestsEndpoint' | 'getApprovalRequests'
+> = {
+    approvalRequestsEndpoint: 'http://localhost:3000/approvalRequests',
     getApprovalRequests: (): Observable<readonly ApprovalRequest[]> => of(APPROVAL_REQUESTS),
 };
 
