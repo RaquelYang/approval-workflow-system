@@ -1,9 +1,11 @@
 // @ts-check
+/// <reference types="node" />
 const eslint = require('@eslint/js');
 const { defineConfig } = require('eslint/config');
 const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
-const tsconfigRootDir = require('node:path').resolve();
+const path = require('path');
+const tsconfigRootDir = path.resolve();
 
 module.exports = defineConfig([
     {
