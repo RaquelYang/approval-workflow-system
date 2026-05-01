@@ -3,6 +3,7 @@ const eslint = require('@eslint/js');
 const { defineConfig } = require('eslint/config');
 const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
+const tsconfigRootDir = require('node:path').resolve();
 
 module.exports = defineConfig([
     {
@@ -16,7 +17,7 @@ module.exports = defineConfig([
         languageOptions: {
             parserOptions: {
                 projectService: true,
-                tsconfigRootDir: __dirname,
+                tsconfigRootDir,
             },
         },
         linterOptions: {
