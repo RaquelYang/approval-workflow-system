@@ -109,8 +109,10 @@ _Example of marking unclear requirements:_
 
 - **[Entity 1]**: [What it represents, key attributes without implementation]
 - **[Entity 2]**: [What it represents, relationships to other entities]
-- **Approval Status**: Use explicit business semantics such as `draft`, `submitted`,
-  `pending`, `approved`, `rejected`, and `returned` when the feature involves workflow state.
+- **Approval Status**: Use explicit business semantics. Canonical current values are
+  `pending`, `approved`, `reviewing`, and `rejected`. Planned future values are `draft`,
+  `submitted`, and `returned`; use them only when the workflow requires them and they have
+  been added to the `ApprovalStatus` type alias.
 
 ## Constitution Alignment _(mandatory)_
 

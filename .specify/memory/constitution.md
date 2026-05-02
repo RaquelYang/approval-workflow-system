@@ -1,20 +1,29 @@
 <!--
 Sync Impact Report
-Version change: 1.1.0 -> 1.2.0
-Modified principles: none
-Added sections: Agent Runtime Version Alignment
+Version change: 1.2.0 -> 1.3.0
+Modified principles:
+  - IV: Added `reviewing` to canonical status list; marked `returned`, `draft`, `submitted`
+        as planned future states that MUST follow the same interface pattern when implemented.
+  - V: Clarified test runner as Vitest invoked via `ng test` (replaces generic "configured test runner").
+Added sections:
+  - Feature Area Responsibilities (under Technical Constraints)
+  - Models Placement Guidance (under Technical Constraints)
+  - API Contract (under Technical Constraints)
+  - Routes Clarification (under Technical Constraints)
 Removed sections: none
 Templates requiring updates:
-- ✅ updated: .specify/templates/plan-template.md
-- ✅ updated: .specify/templates/spec-template.md
-- ✅ updated: .specify/templates/tasks-template.md
-- ✅ reviewed: .specify/templates/checklist-template.md
-- ✅ reviewed: .specify/templates/commands/*.md (no files present)
-- ✅ updated: .github/copilot-instructions.md
-- ✅ updated: AGENTS.md
-- ✅ updated: README.md
-- ✅ reviewed: DESIGN.md
-Follow-up TODOs: none
+  - ✅ updated: .specify/templates/plan-template.md (vitest reference, status list)
+  - ✅ updated: .specify/templates/spec-template.md (status list)
+  - ✅ updated: .specify/templates/tasks-template.md (vitest reference)
+  - ✅ reviewed: .specify/templates/checklist-template.md (no changes needed)
+  - ✅ reviewed: .specify/templates/commands/*.md (no files present)
+  - ✅ updated: .github/copilot-instructions.md (vitest, status list, API contract, routes)
+  - ✅ reviewed: AGENTS.md (no changes needed - stays concise)
+  - ✅ updated: README.md (API endpoints section)
+  - ✅ reviewed: DESIGN.md (no changes needed)
+Follow-up TODOs:
+  - TODO(PLANNED_STATUSES): Implement `returned`, `draft`, `submitted` status variants when
+    the workflow requires them; update ApprovalStatus type alias and mock-api/data accordingly.
 -->
 
 # Approval Workflow System Frontend Constitution
@@ -72,10 +81,15 @@ states. The application MUST favor dense, quiet, well-ordered screens that suppo
 comparison, batch understanding, and repeated decisions.
 
 Features MUST NOT replace real workflow capability with large hero sections, decorative card
-stacks, or non-functional visual flourishes. Approval workflow data models, status enums,
-and UI labels MUST use clear business semantics such as `pending`, `approved`, `rejected`,
-`returned`, `draft`, and `submitted`. The rationale is that an approval system succeeds when
-users can decide accurately and efficiently, not when it resembles a marketing page.
+stacks, or non-functional visual flourishes. Approval workflow data models, status enums, and
+UI labels MUST use clear business semantics. The canonical `ApprovalStatus` type currently
+defines four values: `pending`, `approved`, `reviewing`, and `rejected`. The statuses
+`returned`, `draft`, and `submitted` are planned future states; they MUST NOT appear in code
+until the workflow requires them, and when they are added they MUST follow the same
+`ApprovalStatus` type alias and interface pattern already established in
+`src/app/core/services/approval-api.service.ts`. The rationale is that an approval system
+succeeds when users can decide accurately and efficiently, not when it resembles a marketing
+page.
 
 ### V. Accessibility, Quality Gates, and Tests Are Non-Negotiable
 
@@ -88,10 +102,10 @@ follow `DESIGN.md` tokens for color, radius, weight, and shadow.
 Each application behavior or styling change MUST run `npm run lint:all`, `npm run test:ci`,
 `npm run build`, and `npm run format:check` before delivery. Features that include logic,
 state transitions, form validation, routing behavior, API interaction, or approval workflow
-rules MUST include focused tests through `ng test` or the project's configured test runner.
-If any gate cannot be executed, the plan or delivery notes MUST record the reason and the
-risk. This principle keeps the system usable for assistive technologies and resilient under
-ongoing feature work.
+rules MUST include focused tests executed via Vitest through `ng test` (the project's
+configured test runner is Vitest, invoked by `npm run test:ci`). If any gate cannot be
+executed, the plan or delivery notes MUST record the reason and the risk. This principle
+keeps the system usable for assistive technologies and resilient under ongoing feature work.
 
 ## Technical Constraints
 
@@ -108,6 +122,62 @@ rules. Approval workflow domain names MUST remain explicit and business-readable
 status variants, component names, and visible labels. Changes to `DESIGN.md` tokens, global
 styles, route architecture, workflow state models, or shared component APIs are
 constitution-related changes and MUST include migration notes.
+
+### Feature Area Responsibilities
+
+The application is organized into three feature areas under `src/app/features/`:
+
+- **`approval/`** — Approver-side experience. Contains:
+    - `dashboard/` — list of requests pending the current approver's decision, with filters
+      and search.
+    - `detail/` — full request detail view with approve, reject, and return actions.
+- **`application/`** — Requester-side experience. Contains:
+    - `create/` — new approval request form.
+    - `list/` — requester's own submitted request history and status tracking.
+- **`admin/`** — Administrative management area for workflow configuration, user management,
+  and reporting. Sub-features are to be defined as the area develops.
+
+Each feature area MUST encapsulate its own components, services, routes, and SCSS. Code that
+serves more than one feature area MUST live in `src/app/shared/` (UI primitives) or
+`src/app/core/` (global services, tokens, guards, interceptors). Cross-feature coupling
+through direct imports is prohibited; shared contracts MUST be factored into `shared/models`
+or `core/services`.
+
+### Models Placement Guidance
+
+Until `src/app/shared/models/` is populated, TypeScript interfaces and type aliases MAY
+reside in the service that owns them (for example, `ApprovalRequest` and `ApprovalStatus`
+in `approval-api.service.ts`). Once an interface is consumed by more than one feature area
+or shared component, it MUST be moved to `src/app/shared/models/` and re-exported from an
+`index.ts` barrel. New interfaces or type aliases MUST use `readonly` on properties where
+the object is not mutated after construction.
+
+### API Contract
+
+The local development API is `json-server` (v0.17) serving on port `3000`. Current endpoints:
+
+| Endpoint            | Method | Description                    |
+| ------------------- | ------ | ------------------------------ |
+| `/approvalRequests` | GET    | List of approval request items |
+| `/apiStatus`        | GET    | API health check               |
+
+The API base URL MUST be injected via the `API_BASE_URL` `InjectionToken` using
+`provideApiBaseUrl()` from `src/app/core/tokens/api-base-url.token.ts`. Services MUST NOT
+hardcode the URL. When a new API resource is required, a corresponding JSON data file MUST
+be added under `mock-api/data/` and the resource MUST be registered in `mock-api/db.js`
+before implementation begins. Production environment values live in
+`src/environments/environment.ts`; development overrides live in
+`src/environments/environment.development.ts`.
+
+### Routes Clarification
+
+`src/app/app.routes.ts` is the single route registry. Routes are currently empty. Every new
+feature route MUST use `loadComponent` (for single-component routes) or a lazy-loaded child
+route array; eager imports at the top-level routes array are prohibited. Routes MUST be
+registered in `app.routes.ts` and MUST NOT be added inline in `app.config.ts` or in
+feature-internal files without a corresponding entry in `app.routes.ts`. Route paths MUST
+use kebab-case and MUST reflect the business action (e.g., `approvals/dashboard`,
+`applications/new`, `admin`).
 
 ## Development Workflow and Quality Gates
 
@@ -166,4 +236,4 @@ sections, or materially expanded guidance. PATCH changes clarify wording or fix 
 issues. Every plan, review, and delivery MUST verify compliance with this constitution and
 record justified exceptions before work proceeds.
 
-**Version**: 1.2.0 | **Ratified**: 2026-05-01 | **Last Amended**: 2026-05-01
+**Version**: 1.3.0 | **Ratified**: 2026-05-01 | **Last Amended**: 2026-05-02

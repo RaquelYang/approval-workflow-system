@@ -55,7 +55,9 @@ handoff.
   Do not add `*ngIf`, `*ngFor`, or legacy structural directive syntax in new
   templates.
 - Lazy-load route-level features with `loadComponent` or lazy route
-  configuration.
+  configuration. All new routes MUST be registered in `src/app/app.routes.ts`
+  using `loadComponent`; eager imports at the top-level routes array are
+  prohibited. Route paths MUST use kebab-case and reflect the business action.
 - Keep code zoneless-compatible. Do not rely on `NgZone` side effects or timing
   assumptions.
 
@@ -111,8 +113,10 @@ handoff.
   states, and error feedback.
 - Favor dense, calm, scannable interfaces for repeated work. Avoid oversized hero
   areas, decorative card stacks, or non-functional flourishes.
-- Use clear business semantics in names and labels, such as `pending`,
-  `approved`, `rejected`, `returned`, `draft`, and `submitted`.
+- Use clear business semantics in names and labels. The canonical `ApprovalStatus`
+  values are: `pending`, `approved`, `reviewing`, and `rejected`. The statuses
+  `returned`, `draft`, and `submitted` are planned future states; do not introduce
+  them until the workflow requires them.
 
 ## Accessibility And UI Quality
 
@@ -130,6 +134,8 @@ handoff.
 
 ## Testing And Verification
 
+- The project test runner is **Vitest**, invoked via `ng test`. The CI command is
+  `npm run test:ci` (`ng test --watch=false`).
 - Add or update tests when changing logic, state transitions, form validation,
   routing, API interaction, or approval workflow rules.
 - Keep tests focused on observable behavior and business outcomes.
@@ -142,7 +148,12 @@ handoff.
 ## API And Environment Notes
 
 - The API base URL is provided through Angular dependency injection with
-  `API_BASE_URL`.
+  `API_BASE_URL` (use `provideApiBaseUrl()` from `src/app/core/tokens/api-base-url.token.ts`).
+- Current mock-API endpoints (json-server on port 3000):
+    - `GET /approvalRequests` — list of approval request items
+    - `GET /apiStatus` — API health check
+- New API resources MUST be added to `mock-api/data/` as a JSON file and registered
+  in `mock-api/db.js` before implementation begins.
 - Development configuration lives in `src/environments/environment.development.ts`.
 - Production defaults live in `src/environments/environment.ts`.
 - Provider wiring lives in `src/app/app.config.ts`.

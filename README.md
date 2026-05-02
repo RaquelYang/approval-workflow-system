@@ -37,7 +37,18 @@ The API base URL is provided through Angular DI with `API_BASE_URL`.
 - Production default: [src/environments/environment.ts](src/environments/environment.ts)
 - Provider wiring: [src/app/app.config.ts](src/app/app.config.ts)
 
-Use `provideApiBaseUrl()` in tests or future runtime setup to override the endpoint without changing services.
+Use `provideApiBaseUrl()` in tests or future runtime setup to override the endpoint without
+changing services.
+
+### Current Endpoints (port 3000)
+
+| Endpoint            | Method | Description               |
+| ------------------- | ------ | ------------------------- |
+| `/approvalRequests` | GET    | List of approval requests |
+| `/apiStatus`        | GET    | API health check          |
+
+New resources require a JSON file under `mock-api/data/` and a registration in
+`mock-api/db.js`.
 
 ## Quality Checks
 

@@ -8,9 +8,9 @@ description: 'Task list template for feature implementation'
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
 
 **Tests**: Include tests when the feature affects logic, state transitions, form validation,
-routing behavior, API interaction, or approval workflow rules. The constitution requires
-`npm run lint:all`, `npm run test:ci`, `npm run build`, and `npm run format:check` before
-delivery.
+routing behavior, API interaction, or approval workflow rules. Tests run via Vitest through
+`ng test`; the CI command is `npm run test:ci`. The constitution requires `npm run lint:all`,
+`npm run test:ci`, `npm run build`, and `npm run format:check` before delivery.
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
 
